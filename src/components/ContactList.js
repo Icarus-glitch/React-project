@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import ContactService from '../Services/contactService'
 
-const ContactList = () => {
+const ContactList = (props) => {
   const [state, setState] = useState ({
     contacts : ContactService.getContactList()
   })
@@ -9,7 +9,8 @@ const ContactList = () => {
   const {contacts} = state;
 
   const clickMe = (contact) => {
-    alert(JSON.stringify(contact));
+    //alert(JSON.stringify(contact));
+    props.sendContact(contact); //send data to parent
   }
   return (
     <>

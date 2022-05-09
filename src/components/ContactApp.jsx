@@ -1,10 +1,22 @@
 import React from 'react'
+import { useState } from 'react'
 import ContactCard from './ContactCard'
 import ContactList from './ContactList'
 
 const ContactApp = () => {
+    const [state, setState] = useState({
+        selectedContact : {}
+    });
+    const {selectedContact} = state;
+
+    const collectContact = (contact) => {
+        setState( () => ({
+            selectedContact : contact
+        }));
+    }
   return (
     <>
+        {/*<pre>{JSON.stringify(selectedContact)}</pre>*/}
         <div className='container mt-3'>
             <div className='row'>
                 <div className='col'>
@@ -16,10 +28,10 @@ const ContactApp = () => {
         <div className='container mt-3'>
             <div className='row'>
                 <div className='col-md-9'>
-                    <ContactList />
+                    <ContactList sendContact={collectContact} />
                 </div>
                 <div className='col-md-3'>
-                    <ContactCard />
+                    <ContactCard  selectedContact={selectedContact}/>
                 </div>
             </div>
         </div>
